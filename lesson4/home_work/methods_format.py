@@ -18,5 +18,45 @@
     (Использовать форматирование строк f либо метод format)
 """
 
-# можно заменить данную строку на input()
-string = 'Lorem, Ipsum, is, sImPlY, duMMy, TEXT, of, The, printing, INDUSTRY.'
+string = 'Lorem, IPsUM, is, sImPlY, duMMy, TEXT, of, The, printing, INDUSTRY.'
+count_lower = 0
+count_upper = 0
+result = ''
+
+for char in string:
+    if char.islower():
+        count_lower += 1
+    elif char.isupper():
+        count_upper += 1
+
+if count_lower > count_upper:
+    result = string.lower()
+elif count_lower < count_upper:
+    result = string.upper()
+else:
+    result = string.swapcase()
+
+print(
+    f'Исходная строка: {string}\n'
+    f'Результат: {result}'
+)
+
+if string.istitle():
+    result = 'done. ' + string
+else:
+    result = 'draft. ' + string[5:]
+
+print(
+    f'Исходная строка: {string}\n'
+    f'Результат: {result}'
+)
+
+if len(string) > 20:
+    result = string[:20]
+else:
+    result = string.ljust(20, '@')
+
+print(
+    f'Исходная строка: {string}\n'
+    f'Результат: {result}'
+)
