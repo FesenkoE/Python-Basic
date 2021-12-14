@@ -6,3 +6,24 @@
     Если цифр в номере недостаточно, чтобы описать номер в нужном формате -
         попросить пользователя повторить ввод.
 """
+
+while True:
+    phone = input('Enter phone number: ')
+
+    digits = ''
+    for char in phone:
+        if char.isdigit():
+            digits += char
+
+    if len(digits) >= 9:
+        phone = '380' + digits[-9:]
+    else:
+        print('Wrong format.')
+        continue
+
+    print(phone)
+
+    if input('Continue? (y/n) ') != 'y':
+        break
+
+print('Bye!')
