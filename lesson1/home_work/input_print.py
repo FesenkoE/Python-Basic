@@ -14,3 +14,11 @@
     125
     1
 """
+
+print('Ввод:')
+a = input()
+b = input()
+c = input()
+
+print('\nВывод:')
+print(c, b, a, sep='\n')
