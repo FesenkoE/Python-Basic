@@ -9,32 +9,3 @@
         Иначе - выводит сообщение 'Bye!' и прекращает свою работу.
 """
 
-answer = 'y'
-
-while answer != 'n':
-    number = int(input('Enter a number: '))
-    operation = input('Choice an operation (+ - * /): ')
-    n_numbers = int(input('Enter n numbers: '))
-    counter = 0
-    result = number
-
-    if operation == '+':
-        for _ in range(n_numbers - 1):
-            result += number
-    elif operation == '-':
-        for _ in range(n_numbers - 1):
-            result -= number
-    elif operation == '*':
-        for _ in range(n_numbers - 1):
-            result *= number
-    elif operation == '/':
-        for _ in range(n_numbers - 1):
-            result /= number
-
-    print('Result: ', result)
-
-    answer = input('Continue Y/n: ')
-
-    if answer == 'n':
-        print('Bye')
-

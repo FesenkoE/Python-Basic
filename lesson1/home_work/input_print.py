@@ -14,10 +14,3 @@
     125
     1
 """
-
-print('Enter 3 numbers:')
-a = input()
-b = input()
-c = input()
-
-print('output: ', c, b, a, sep='\n')

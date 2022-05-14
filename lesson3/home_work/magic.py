@@ -21,34 +21,5 @@
     и сообщать пользователю, если он поставил новый рекорд
 """
 
-import random
-
-random_number = random.randint(1, 100)
-
-answer = 'y'
-record = 0
-counter = 0
-
-while answer != 'n':
-    counter += 1
-    number = int(input('Enter a number: '))
-
-    if number > random_number:
-        print('random number is less!')
-    elif number < random_number:
-        print('random number is more!')
-    else:
-        if counter < record or record == 0:
-            record = counter
-
-        print('Success! Magic number is: ', random_number)
-        print('You guessed with ', counter, ' attempts')
-        print('Record is: ', record)
-        answer = input('Continue? (Y/n): ')
-
-        if answer != 'n':
-            random_number = random.randint(1, 100)
-            counter = 0
-
 
 
