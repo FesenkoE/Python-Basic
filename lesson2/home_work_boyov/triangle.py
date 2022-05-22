@@ -7,13 +7,15 @@
     * у треугольника каждая сторона меньше суммы двух других сторон
 """
 
-side_a = int(input('Enter side A: '))
-side_b = int(input('Enter side B: '))
-side_c = int(input('Enter side C: '))
+try:
+    a = float(input("Enter side 'a' of the triangle: "))
+    b = float(input("Enter side 'b' of the triangle: "))
+    c = float(input("Enter side 'c ' of the triangle: "))
 
-if side_a + side_b > side_c and side_b + side_c > side_a and side_c + side_a > side_b:
-    print('Triangle is exists')
-else:
-    print('Triangle is not exists')
+    if (a + b > c) and (b + c > a) and (c + a > b):
+        print('Triangle: {}, {}, {}.'.format(a, b, c))
+    else:
+        print('Not triangle: {}, {}, {}.'.format(a, b, c))
 
-
+except ValueError:
+    print('Not valid value')

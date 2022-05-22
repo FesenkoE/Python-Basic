@@ -10,35 +10,30 @@
     * обработать все возможные ошибки программы с помощью try-except
 """
 
-try:
-    result = None
-    num_a = int(input('Enter number a: '))
-    operation = input('Enter operation (+ - * /): ')
-    num_b = int(input('Enter number b: '))
+a = None
+b = None
+action = None
+res = None
 
-    if operation == '+':
-        result = num_a + num_b
-    elif operation == '-':
-        result = num_a - num_b
-    elif operation == '*':
-        result = num_a * num_b
-    elif operation == '/':
-        result = num_a / num_b
+try:
+    a = float(input('a: '))
+    action = input('action: ')
+    b = float(input('b: '))
+
+    if action == '/':
+        res = a / b
+    elif action == '*':
+        res = a * b
+    elif action == '-':
+        res = a - b
+    elif action == '+':
+        res = a + b
     else:
         print('Invalid operation')
+
 except ValueError:
-    print('Invalid value')
+    print('Not valid value')
 except ZeroDivisionError:
-    print('Division by Zero')
-except Exception as e:
-    print(e.__class__.__name__, ':', e)
+    print('Division by zero')
 else:
-    print('Result:', result)
-finally:
-    print('The End')
-
-
-
-
-
-
+    print('Result: ', res)
