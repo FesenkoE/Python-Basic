@@ -20,33 +20,41 @@
     ** по желанию, можете хранить рекордное число попыток
     и сообщать пользователю, если он поставил новый рекорд
 """
+
 import random
 
-random_number = random.randint(0, 100)
-record = 0
-attempt = 0
+min_count = 0
 
 while True:
-    number = int(input('Enter a number: '))
-    attempt += 1
+    count = 0
+    rand = random.randint(0, 1000)
 
-    if number < random_number:
-        print('Random number more than your number')
-    elif number > random_number:
-        print('Random number less than your number')
-    else:
-        if not record or record > attempt:
-            record = attempt
+    while True:
+        count += 1
 
-        print('You guessed random number - ', number)
-        print('Attempt - ', attempt)
-        print('Your record - ', record)
+        try:
+            num = int(input('введите число от 0 до 1000 : '))
+        except ValueError:
+            continue
 
-        answer = input('Continue? (Y/n) ')
-
-        if answer != 'n':
-            attempt = 0
-            random_number = random.randint(0, 100)
+        if num < rand:
+            print('Ваше значение меньше')
+        elif num > rand:
+            print('Ваше значение больше')
         else:
-            print('Bye!')
+            print('Верно!', rand)
+            print('Количество попыток:', count)
             break
+
+    if min_count == 0:
+        min_count = count
+
+    if min_count > count:
+        min_count = count
+        print('You set a new record')
+
+    y_n = input('Continue(Y/n)? ')
+
+    if y_n == 'n':
+        print('Bye')
+        break

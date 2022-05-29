@@ -8,3 +8,6 @@
     * обработать возможные ошибки
 """
 
+start = int(input()) if start else 0
+end = int(input('Enter end: '))
+
