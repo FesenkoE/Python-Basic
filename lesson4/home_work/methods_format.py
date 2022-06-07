@@ -17,3 +17,40 @@
         Результат: "some edited string".
     (Использовать форматирование строк f либо метод format)
 """
+
+# можно заменить данную строку на input()
+string = 'Lorem, Ipsum, is, sImPlY, duMMy, TEXT, of, The, printing, INDUSTRY.'
+
+upper_count = 0
+lower_count = 0
+
+print(f'String: {string}')
+
+for char in string:
+    if char.isupper():
+        upper_count += 1
+    elif char.islower():
+        lower_count += 1
+
+if upper_count > lower_count:
+    edited_string = string.upper()
+elif upper_count < lower_count:
+    edited_string = string.lower()
+else:
+    edited_string = string.swapcase
+
+print(f'Edited String: {edited_string}')
+
+if string.istitle():
+    edited_string = 'done. ' + string
+else:
+    edited_string = 'draft: ' + string[5:]
+
+print(f'Edited string: {edited_string}')
+
+if len(string) > 20:
+    edited_string = string[:20]
+else:
+    edited_string = string.ljust(20, '@')
+
+print(f'Edited string: {edited_string}')

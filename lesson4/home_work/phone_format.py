@@ -6,3 +6,19 @@
     Если цифр в номере недостаточно, чтобы описать номер в нужном формате -
         попросить пользователя повторить ввод.
 """
+
+while True:
+    phone_number = input('Enter phone number: ')
+    prepare_phone_number = ''
+
+    for digit in phone_number:
+        if digit.isdigit():
+            prepare_phone_number += digit
+
+    if len(prepare_phone_number) < 10:
+        continue
+    else:
+        phone_number = '38' + prepare_phone_number[-10:]
+
+    print(f'Phone Number: {phone_number}')
+    break

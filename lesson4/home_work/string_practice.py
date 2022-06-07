@@ -43,4 +43,4 @@ print(f'Slicing: {slicing}')
 
 first_part = (string[:len(string) // 2]) * 3
 second_part = string[len(string) // 2:]
-print(f'Result: {first_part + second_part} ')
+print(f'Result: {first_part + second_part}')
