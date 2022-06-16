@@ -10,3 +10,17 @@
 Данную программу можно модифицировать, и для удобства пользователя
 выводить сообщение при неверном ответе.
 """
+
+
+def main():
+    answer = input('How much: 2 + 2? ')
+
+    if answer == '4':
+        print('Perfect!')
+        return
+
+    return main()
+
+
+if __name__ == '__main__':
+    main()
