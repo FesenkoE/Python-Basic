@@ -22,3 +22,112 @@
         - программа генерирует пароль из нужной длины из введенных символов
         - * игнорируются пробелы
 """
+
+import string
+import random
+
+
+def main():
+    answer = input(
+        '1. Сгенерировать простой пароль (только буквы в нижнем регистре, 8 символов)\n'
+        '2. Сгенерировать средний пароль (любые буквы и цифры, 8 символов)\n'
+        '3. Сгенерировать сложный пароль (минимум 1 большая буква, 1 маленькая, 1 цифра и 1 спец-символ, длина от 8 '
+        'до 16 символов)\n'
+        '4. Сгенерировать пользовательский пароль ()\n'
+    )
+
+    if answer == '1':
+        pwd = simple_pwd()
+        print(f'Simple password: {pwd}')
+    elif answer == '2':
+        pwd = medium_pwd()
+        print(f'Medium password: {pwd}')
+    elif answer == '3':
+        pwd = strong_pwd()
+        print(f'Strong password: {pwd}')
+    elif answer == '4':
+        pwd = custom_pwd()
+        print(f'Custom password: {pwd}')
+    else:
+        print('Choice correct number')
+        return main()
+
+
+def pwd_len():
+    pwd_length = int(input('Введите длину пароля: '))
+
+    if pwd_length < 8:
+        print('Пароль не надежный')
+
+    return pwd_length
+
+
+def simple_pwd():
+    pwd = ''
+    pwd_length = pwd_len()
+    for i in range(pwd_length):
+        pwd += random.choice(string.ascii_lowercase)
+
+    return pwd
+
+
+def medium_pwd():
+    pwd = ''
+    pwd_length = pwd_len()
+    special_string = string.digits + string.ascii_letters
+
+    for i in range(pwd_length):
+        pwd += random.choice(special_string)
+
+    return pwd
+
+
+def strong_pwd():
+    pwd = ''
+    special_string = string.digits + string.ascii_letters + string.punctuation
+
+    for i in range(random.randint(8, 16)):
+        pwd += random.choice(special_string)
+
+    if check_pwd(pwd):
+        return pwd
+    else:
+        return strong_pwd()
+
+
+def custom_pwd():
+    pwd = ''
+    special_string = input('Enter pool of chars: ').replace(' ', '')
+    print(f'Special string: {special_string}')
+    pwd_length = int(input('Enter password length: '))
+
+    for i in range(pwd_length):
+        pwd += random.choice(special_string)
+
+    return pwd
+
+
+def check_pwd(pwd):
+    lower_char = False
+    upper_char = False
+    digit = False
+    punctuation = False
+
+    for char in pwd:
+        if char.islower():
+            lower_char = True
+        elif char.isupper():
+            upper_char = True
+        elif char.isdigit():
+            digit = True
+        elif (not char.isnumeric()) and (not char.isdigit()):
+            punctuation = True
+
+    if lower_char and upper_char and digit and punctuation:
+        return True
+
+    return
+
+
+if __name__ == '__main__':
+    main()
