@@ -42,8 +42,6 @@
     Ваш пароль: ********** (кол-во  == кол-ву символов пароля)
 
 """
-import string
-
 
 
 def set_phone():
@@ -55,17 +53,23 @@ def set_phone():
     """
     try:
         phone_num = input('Введите номер телефона: ')
+
         for char in phone_num:
             if not char.isdigit():
                 phone_num = phone_num.replace(char, '')  # удаляем лишние символы
+
         if phone_num[-10] != '0':  # ecли 10й символ с конца 0, значит колличество цифр верное
             print('Введен не валидный номер')
             return set_phone()
-        phone_num = '38' + phone_num[-10::]
+
+        phone_num = '38' + phone_num[-10:]
+
         return phone_num
     except IndexError:
         print("Короткий номер!")
+
         return set_phone()
+
 
 def set_email():
     """
@@ -80,6 +84,7 @@ def set_email():
     :return: str
     """
     email_ = input("Введите Ваш email: ")
+
     if email_.count('@') != 1 \
             or len(email_[:email_.index('@')]) < 2 \
             or email_[email_.index('@'):].count('.') == 0:
@@ -89,8 +94,11 @@ def set_email():
         # третья проверка: берем срез начиная с "@" - доконца, считаем в нем колл-во ".". не должно быть нулем.
         # из устных разъямнений задачи...
         print('Введен не валидный email')
+
         return set_email()
+
     return email_
+
 
 def set_password():
     """
@@ -118,6 +126,7 @@ def set_password():
         flag_lower = 0
         flag_digit = 0
         flag_space = 0
+
         for char in password:
             if char.isupper():
                 flag_apper = 1
@@ -127,6 +136,7 @@ def set_password():
                 flag_digit = 1
             if char.isspace():
                 flag_space = 1
+
         if len(password) < 8:
             print('КОРОТКИЙ ПАРОЛЬ')
             continue
