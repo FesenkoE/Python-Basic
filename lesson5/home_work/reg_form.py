@@ -42,3 +42,38 @@
     Ваш пароль: ********** (кол-во  == кол-ву символов пароля)
 
 """
+
+
+def main():
+    phone_number = get_phone_number()
+
+
+def get_phone_number():
+    phone_number = input('Enter phone number: ')
+    prepare_phone_number = ''
+
+    for digit in phone_number:
+        if digit.isdigit():
+            prepare_phone_number += digit
+
+    if len(prepare_phone_number) < 10:
+        return get_phone_number()
+    else:
+        phone_number = '+38' + prepare_phone_number[-10:]
+
+    return phone_number
+
+
+def get_email():
+    email = input('Enter email: ')
+
+
+def check_email(email):
+    if len(email) > 5 and email.count('@') == 1:
+        return True
+
+    return
+
+
+if __name__ == '__main__':
+    main()
