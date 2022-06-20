@@ -46,7 +46,7 @@ def set_email():
         return set_email()
 
 
-def  set_password():
+def set_password():
     """
     3. Пользователь ввод пароль.
     Программа проверяет надежность пароля:
@@ -82,7 +82,6 @@ def create_file_reg():
     except FileNotFoundError:
         with open(FILES_DIR / 'users.txt', 'w') as f:
             f.write(f'PHONE / EMAIL / PASSWORD\n')
-
 
 
 def save_error(value):

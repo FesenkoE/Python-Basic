@@ -169,6 +169,7 @@ def check_password(pwd):
             print('ПАРОЛИ НЕ СОВПОДАЮТ')
             return False, ' ПАРОЛИ НЕ СОВПОДАЮТ'
 
+
 def main():
     phone = set_phone()
     email_ = set_email()
