@@ -16,7 +16,7 @@
 
 """
 
-import lesson5.password_gen as p_g
+import lesson5.home_work_boyov.password_gen as p_g
 
 
 def create_file():
@@ -28,10 +28,10 @@ def create_file():
             pass
 
 
-def write_pasword_in_file(generator_password):
+def write_password_in_file(generator_password):
     count = 0
     while count <= 10:
-        password = generator_password()
+        password = generator_password
         with open('password_gen_v2.txt', 'r') as f:
             list_password = f.readlines()
         if password + '\n' not in list_password:
@@ -41,21 +41,20 @@ def write_pasword_in_file(generator_password):
         else:
             print("Insecure password")
             count += 1
-            pass
 
 
 def main():
     create_file()
 
-    match p_g.choise_typ_password():
+    match p_g.choice_typ_password():
         case '1':
-            return write_pasword_in_file(p_g.gener_password_low)
+            return write_password_in_file(p_g.generate_password_low())
         case '2':
-            return write_pasword_in_file(p_g.gener_password_letter_and_dig)
+            return write_password_in_file(p_g.generate_password_letter_and_dig())
         case '3':
-            return write_pasword_in_file(p_g.gener_password_high)
+            return write_password_in_file(p_g.generate_password_strong())
         case '4':
-            return write_pasword_in_file(p_g.gener_password_user)
+            return write_password_in_file(p_g.generate_password_user())
         case _:
             print('Не существующий вариант')
 

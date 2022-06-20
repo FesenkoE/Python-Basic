@@ -9,24 +9,19 @@
 # Решение в lesson8/register/main.py
 
 from pathlib import Path
+import lesson5.home_work_boyov.reg_form as reg_form
 
 FILES_DIR = Path(__file__).resolve().parent / 'files'
 
 
 def set_phone():
-    while True:
-        phone = input('Enter phone number: ')
-        phone_num = ''
-        for char in phone:
-            if char.isdigit():
-                phone_num += char
-        if len(phone_num) >= 9:
-            phone_num = '380' + phone_num[-9::]
-            return phone_num
-        else:
-            print('НЕ ВАЛИДНЫЙ НОМЕР')
-            save_error(phone + ' НЕ ВАЛИДНЫЙ НОМЕР')
-            continue
+
+    phone = input('Введите номер телефона: ')
+    if (res := reg_form.phone_format(phone))[0]:
+        return res[1]
+    else:
+        save_error(res[1])
+        return set_phone()
 
 
 def set_email():
@@ -41,20 +36,14 @@ def set_email():
     Пользователь может вводить email до тех пор, пока он не будет валидным.
     :return: str
     """
-    while True:
-        email_ = input("Введите Ваш email: ")
-        if email_.count('@') != 1 \
-                or len(email_[:email_.index('@')]) < 2 \
-                or email_[email_.index('@'):].count('.') == 0:
-            # пояснение второй проверки: последние 4 символа это минимум "@_._".
-            # из чего следует, логин должен быть минимум 2 символа, тогда общая длина выйдет min 6 символов.
-            # проверяем длину среза от 0 до индекса "@", должнпа быть не менее 2
-            # третья проверка: берем срез начиная с "@" - доконца, считаем в нем колл-во ".". не должно быть нулем.
-            # из устных разъямнений задачи...
-            print('Введен не валидный email')
-            save_error(email_ + ' НЕ ВАЛИДНЫЙ EMAIL')
-        else:
-            return email_
+
+    email_ = input("Введите Ваш email: ")
+    if reg_form.check_email(email_):
+        return email_
+    else:
+        save_error(email_ + ' НЕ ВАЛИДНЫЙ EMAIL')
+        print('НЕ ВАЛИДНЫЙ EMAIL')
+        return set_email()
 
 
 def  set_password():
@@ -74,43 +63,16 @@ def  set_password():
     то возвращаемся к пункту 3.
     :return: str
     """
-    while True:
-        password = input("Пароль не должен содержать пробелы.\n"
-                         "Должны быть минимум по одному символу в верхнем и нижнем регистре.\n"
-                         "Должны быть минимум одна цифра.\n"
-                         "Введите пароль: ")
-        flag_apper = 0
-        flag_lower = 0
-        flag_digit = 0
-        flag_space = 0
-        for char in password:
-            if char.isupper():
-                flag_apper = 1
-            if char.islower():
-                flag_lower = 1
-            if char.isdigit():
-                flag_digit = 1
-            if char.isspace():
-                flag_space = 1
-        if len(password) < 8:
-            print('КОРОТКИЙ ПАРОЛЬ')
-            save_error(password + ' КОРОТКИЙ ПАРОЛЬ')
-            continue
-        elif not flag_apper or not flag_lower or not flag_digit:
-            print('НЕ НАДЕЖНЫЙ ПАРОЛЬ')
-            save_error(password + ' НЕ НАДЕЖНЫЙ ПАРОЛЬ')
-            continue
-        elif flag_space:
-            print('ПАРОЛЬ СОДЕРЖИТ ПРОБЕЛЫ')
-            save_error(password + ' ПАРОЛЬ СОДЕРЖИТ ПРОБЕЛЫ')
-            continue
-        else:
-            password_reply = input('Повторите пароль: ')
-            if password_reply == password:
-                return password
-            else:
-                print('ПАРОЛИ НЕ СОВПОДАЮТ')
-                save_error(password + ' ПАРОЛИ НЕ СОВПОДАЮТ')
+
+    password = input("Пароль не должен содержать пробелы.\n"
+                     "Должны быть минимум по одному символу в верхнем и нижнем регистре.\n"
+                     "Должны быть минимум одна цифра.\n"
+                     "Введите пароль: ")
+    if (res:= reg_form.check_password(password))[0]:
+        return password
+    else:
+        save_error(password + res[1])
+        return set_password()
 
 
 def create_file_reg():

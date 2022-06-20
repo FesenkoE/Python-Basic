@@ -35,26 +35,31 @@ def generate_password_letter_and_dig():
     return ''.join(random.sample(string.digits + string.ascii_letters, 8))
 
 
-def generate_password_high():
+def generate_password_strong():
     char_set = string.ascii_letters + string.digits + string.punctuation
-    flag_dig = flag_upp = flag_low = flag_puct = 1
+    password = ''.join(random.sample(char_set, random.randint(8, 16)))
 
-    password = ''
+    if check_password(password):
+        return password
+    else:
+        return generate_password_strong()
 
-    while flag_dig or flag_upp or flag_low or flag_puct:
-        password = ''.join(random.sample(char_set, random.randint(8, 16)))
 
-        for char in password:
-            if char in string.digits:
-                flag_dig = 0
-            if char in string.ascii_uppercase:
-                flag_upp = 0
-            if char in string.ascii_lowercase:
-                flag_low = 0
-            if char in string.punctuation:
-                flag_puct = 0
+def check_password(password):
+    flag_dig = flag_upp = flag_low = flag_punctuation = False
 
-    return password
+    for char in password:
+        if char in string.digits:
+            flag_dig = True
+        if char in string.ascii_uppercase:
+            flag_upp = True
+        if char in string.ascii_lowercase:
+            flag_low = True
+        if char in string.punctuation:
+            flag_punctuation = True
+    if flag_dig and flag_upp and flag_low and flag_punctuation:
+        return True
+    return False
 
 
 def generate_password_user():
@@ -90,12 +95,11 @@ def main():
         case '2':
             print(f'Strong pwd: {generate_password_letter_and_dig()}')
         case '3':
-            print(f'Strong pwd: {generate_password_high()}')
+            print(f'Strong pwd: {generate_password_strong()}')
         case '4':
-            return generate_password_user()
+            print(f'Strong pwd: {generate_password_user()}')
         case _:
             print('Не существующий вариант')
-            return None
 
 
 if __name__ == "__main__":

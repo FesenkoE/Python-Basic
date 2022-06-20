@@ -51,24 +51,24 @@ def set_phone():
     Проверяет его, приводит к единому формату (380123456789) и возвращает его.
     :return: str
     """
-    try:
-        phone_num = input('Введите номер телефона: ')
 
-        for char in phone_num:
-            if not char.isdigit():
-                phone_num = phone_num.replace(char, '')  # удаляем лишние символы
-
-        if phone_num[-10] != '0':  # ecли 10й символ с конца 0, значит колличество цифр верное
-            print('Введен не валидный номер')
-            return set_phone()
-
-        phone_num = '38' + phone_num[-10:]
-
-        return phone_num
-    except IndexError:
-        print("Короткий номер!")
-
+    phone= input('Введите номер телефона: ')
+    if (phone_num := phone_format(phone))[0]:
+        return phone_num[1]
+    else:
         return set_phone()
+
+
+def phone_format(phone_str):
+    phone_num = ''
+    for char in phone_str:
+        if char.isdigit():
+            phone_num += char
+    if len(phone_num) >= 9:
+        return True, '380' + phone_num[-9::]
+    else:
+        print('НЕ ВЕРНЫЙ ФОРМАТ')
+        return False, f'{phone_str} НЕ ВЕРНЫЙ ФОРМАТ ТЕЛЕФОНА'
 
 
 def set_email():
@@ -84,20 +84,31 @@ def set_email():
     :return: str
     """
     email_ = input("Введите Ваш email: ")
+    if check_email(email_):
+        return email_
+    return set_email()
+
+
+def check_email(email_):
+    """
+    пояснение второй проверки: последние 4 символа это минимум "@_._",
+    из чего следует, логин должен быть минимум 2 символа, тогда общая длина выйдет min 6 символов.
+    проверяем длину среза от 0 до индекса "@", должнпа быть не менее 2
+    третья проверка: берем срез начиная с "@" - доконца, считаем в нем колл-во ".". не должно быть нулем.
+    после '@' должно быть минимум 3 символа
+    из устных разъямнений задачи...
+
+    :param email_:
+    :return: bool
+    """
 
     if email_.count('@') != 1 \
             or len(email_[:email_.index('@')]) < 2 \
-            or email_[email_.index('@'):].count('.') == 0:
-        # пояснение второй проверки: последние 4 символа это минимум "@_._".
-        # из чего следует, логин должен быть минимум 2 символа, тогда общая длина выйдет min 6 символов.
-        # проверяем длину среза от 0 до индекса "@", должнпа быть не менее 2
-        # третья проверка: берем срез начиная с "@" - доконца, считаем в нем колл-во ".". не должно быть нулем.
-        # из устных разъямнений задачи...
+            or email_[email_.index('@'):].count('.') == 0\
+            or len(email_[email_.index('@'):]) < 4:
         print('Введен не валидный email')
-
-        return set_email()
-
-    return email_
+        return False
+    return True
 
 
 def set_password():
@@ -117,42 +128,46 @@ def set_password():
     то возвращаемся к пункту 3.
     :return: str
     """
-    while True:
-        password = input("Пароль не должен содержать пробелы.\n"
-                         "Должны быть минимум по одному символу в верхнем и нижнем регистре.\n"
-                         "Должны быть минимум одна цифра.\n"
-                         "Введите пароль: ")
-        flag_apper = 0
-        flag_lower = 0
-        flag_digit = 0
-        flag_space = 0
 
-        for char in password:
-            if char.isupper():
-                flag_apper = 1
-            if char.islower():
-                flag_lower = 1
-            if char.isdigit():
-                flag_digit = 1
-            if char.isspace():
-                flag_space = 1
+    password = input("Пароль не должен содержать пробелы.\n"
+                     "Должны быть минимум по одному символу в верхнем и нижнем регистре.\n"
+                     "Должны быть минимум одна цифра.\n"
+                     "Введите пароль: ")
+    if check_password(password)[0]:
+        return password
+    else:
+        return set_password()
 
-        if len(password) < 8:
-            print('КОРОТКИЙ ПАРОЛЬ')
-            continue
-        elif not flag_apper or not flag_lower or not flag_digit:
-            print('НЕНАДЕЖНЫЙ ПАРОЛЬ')
-            continue
-        elif flag_space:
-            print('НЕ ДОЛЖЕН СОДЕРЖАТЬ ПРОБЕЛОВ')
-            continue
+
+def check_password(pwd):
+    flag_apper = flag_lower = flag_digit = flag_space = 0
+
+    for char in pwd:
+        if char.isupper():
+            flag_apper = 1
+        if char.islower():
+            flag_lower = 1
+        if char.isdigit():
+            flag_digit = 1
+        if char.isspace():
+            flag_space = 1
+
+    if len(pwd) < 8:
+        print('КОРОТКИЙ ПАРОЛЬ')
+        return False, 'КОРОТКИЙ ПАРОЛЬ'  #возвращает список. второй єлемент будет использоваться в Lesson6(импортирую модуль)
+    elif not flag_apper or not flag_lower or not flag_digit:
+        print('НЕНАДЕЖНЫЙ ПАРОЛЬ')
+        return False, ' НЕНАДЕЖНЫЙ ПАРОЛЬ'
+    elif flag_space:
+        print('НЕ ДОЛЖЕН СОДЕРЖАТЬ ПРОБЕЛОВ')
+        return False, ' НЕ ДОЛЖЕН СОДЕРЖАТЬ ПРОБЕЛОВ'
+    else:
+        password_reply = input('Повторите пароль: ')
+        if password_reply == pwd:
+            return True, ' ПАРОЛЬ ПРИНЯТ'
         else:
-            password_reply = input('Повторите пароль: ')
-            if password_reply == password:
-                return password
-            else:
-                print('ПАРОЛИ НЕ СОВПОДАЮТ')
-
+            print('ПАРОЛИ НЕ СОВПОДАЮТ')
+            return False, ' ПАРОЛИ НЕ СОВПОДАЮТ'
 
 def main():
     phone = set_phone()
