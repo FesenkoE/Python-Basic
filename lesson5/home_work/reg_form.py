@@ -45,7 +45,14 @@
 
 
 def main():
-    phone_number = get_phone_number()
+    user_phone = get_phone_number()
+    user_email = get_email()
+    user_password = get_password()
+
+    print('Поздравляем с успешной регистрацией!')
+    print(f'Ваш номер телефона: {user_phone}')
+    print(f'Ваш email: {user_email}')
+    print(f'Ваш пароль: {user_password}')
 
 
 def get_phone_number():
@@ -66,10 +73,55 @@ def get_phone_number():
 
 def get_email():
     email = input('Enter email: ')
+    if check_email(email):
+        return email
+    else:
+        return get_email()
 
 
 def check_email(email):
     if len(email) > 5 and email.count('@') == 1:
+        return True
+
+    return
+
+
+def get_password():
+    user_password = input('Enter password: ')
+
+    if check_password(user_password):
+        user_repeat_password = input('Repeat password: ')
+
+        if user_password == user_repeat_password:
+            return user_password
+        else:
+            return get_password()
+    else:
+        return get_password()
+
+
+def check_password(pwd):
+    pwd_len = False
+    pwd_is_space = False
+    pwd_is_lower = False
+    pwd_is_upper = False
+    pwd_is_digit = False
+    pwd_is_special_char = False
+
+    if len(pwd) > 8 and not pwd.isspace():
+        pwd_len = pwd_is_space = True
+
+    for char in pwd:
+        if char.islower():
+            pwd_is_lower = True
+        elif char.isupper():
+            pwd_is_upper = True
+        elif char.isdigit():
+            pwd_is_digit = True
+        elif (not char.isnumeric()) and (not char.isdigit()):
+            pwd_is_special_char = True
+
+    if pwd_len and pwd_is_space and pwd_is_lower and pwd_is_upper and pwd_is_digit and pwd_is_special_char:
         return True
 
     return
