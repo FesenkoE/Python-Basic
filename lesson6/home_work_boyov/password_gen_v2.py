@@ -16,7 +16,7 @@
 
 """
 
-import lesson5.home_work_boyov.password_gen as p_g
+import utilities.password_gen as p_g
 
 
 def create_file():
@@ -59,6 +59,5 @@ def main():
             print('Не существующий вариант')
 
 
-
 if __name__ == "__main__":
-    print(main())
+    main()
