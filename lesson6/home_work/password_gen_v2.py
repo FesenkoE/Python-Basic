@@ -15,5 +15,13 @@
     программа зациклится либо уйдет в бесконечную рекурсию и сломается
 
 """
+from lesson5.home_work_boyov import password_gen
 
-# Решение с декораторами в lesson9/_7_decorators_pw_gen.py
+
+def main():
+    password_gen
+    # pass
+
+
+if __name__ == '__main__':
+    main()
