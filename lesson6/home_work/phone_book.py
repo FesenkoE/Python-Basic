@@ -11,12 +11,36 @@
     4. +380501234564 - Имя
 """
 from pathlib import Path
+from utilities.phone_format import get_phone_number
 
 FILES_DIR = Path(__file__).resolve().parent / "files"
 
 
 def main():
-    pass
+    with open(FILES_DIR / 'phone_book.txt', 'r') as f:
+        for line in f:
+            name = get_name(line)
+
+            if name[0].lower() == 'm' or name[-1].lower() == 'a':
+                phone_number = get_phone_number(line)
+                write_contact(phone_number, name)
+            else:
+                continue
+
+
+def get_name(line):
+    name = ''
+
+    for char in line:
+        if char.isalpha():
+            name += char
+
+    return name.capitalize()
+
+
+def write_contact(phone_number, name):
+    with open(FILES_DIR / 'edited_phone_book.txt', 'a') as f:
+        f.write(f'{phone_number} - {name}\n')
 
 
 if __name__ == "__main__":
