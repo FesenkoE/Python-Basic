@@ -31,6 +31,9 @@ def main():
         print(f'PWD: {pwd}')
         with open('password_gen_v2.txt', 'a') as f:
             f.write(pwd + '\n')
+    else:
+        print('Limit less than five! Bye!!!')
+        return
 
 
 def get_pwd():
