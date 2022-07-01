@@ -15,12 +15,49 @@
     программа зациклится либо уйдет в бесконечную рекурсию и сломается
 
 """
-from lesson5.home_work_boyov import password_gen
+import utilities.password_gen as pwd_gen
 
 
 def main():
-    password_gen
-    # pass
+    pwd = get_pwd()
+    counter = 1
+
+    while not check_pwd(pwd) and counter < 5:
+        print('Insecure password')
+        counter += 1
+        pwd = get_pwd()
+
+    if counter < 5:
+        print(f'PWD: {pwd}')
+        with open('password_gen_v2.txt', 'a') as f:
+            f.write(pwd + '\n')
+
+
+def get_pwd():
+    pwd_type = pwd_gen.choice_pwd()
+
+    if pwd_type == '1':
+        pwd = pwd_gen.simple_pwd()
+    elif pwd_type == '2':
+        pwd = pwd_gen.medium_pwd()
+    elif pwd_type == '3':
+        pwd = pwd_gen.strong_pwd()
+    elif pwd_type == '4':
+        pwd = pwd_gen.custom_pwd()
+    else:
+        print('Invalid number')
+        return get_pwd()
+
+    return pwd
+
+
+def check_pwd(pwd):
+    with open('password_gen_v2.txt') as f:
+        for line in f:
+            if pwd == line.replace('\n', ''):
+                return False
+
+        return True
 
 
 if __name__ == '__main__':
