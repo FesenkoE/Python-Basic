@@ -21,7 +21,7 @@ def main():
         for line in f:
             name = get_name(line)
 
-            if name[0].lower() == 'm' or name[-1].lower() == 'a':
+            if name[0] == 'M' or name[-1] == 'a':
                 phone_number = get_phone_number(line)
                 write_contact(phone_number, name)
             else:

@@ -28,7 +28,6 @@ def main():
         pwd = get_pwd()
 
     if counter < 5:
-        print(f'PWD: {pwd}')
         with open('password_gen_v2.txt', 'a') as f:
             f.write(pwd + '\n')
     else:
@@ -55,7 +54,8 @@ def get_pwd():
 
 
 def check_pwd(pwd):
-    with open('password_gen_v2.txt') as f:
+    with open('password_gen_v2.txt', 'a+') as f:
+        f.seek(0)
         for line in f:
             if pwd == line.replace('\n', ''):
                 return False
