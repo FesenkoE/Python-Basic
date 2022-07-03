@@ -64,6 +64,7 @@ def get_phone_number():
             prepare_phone_number += digit
 
     if len(prepare_phone_number) < 10:
+        write_error_data('Phone number less than 10 digits', prepare_phone_number)
         return get_phone_number()
     else:
         phone_number = '+38' + prepare_phone_number[-9:]
@@ -76,6 +77,7 @@ def get_email():
     if check_email(email):
         return email
     else:
+        write_error_data('Invalid email', email)
         return get_email()
 
 
@@ -95,6 +97,7 @@ def get_password():
         if user_password == user_repeat_password:
             return user_password
         else:
+            write_error_data('Invalid repeated', user_repeat_password)
             return get_password()
     else:
         return get_password()
@@ -125,6 +128,11 @@ def check_password(pwd):
         return True
 
     return
+
+
+def write_error_data(field_type, data):
+    with open('errors.txt', 'a') as f:
+        f.write(f'{field_type} - {data}\n')
 
 
 if __name__ == '__main__':

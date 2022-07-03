@@ -6,4 +6,17 @@
         (не валидный номер телефона, email и т.д.)
 """
 
-# Решение в lesson8/register/main.py
+import utilities.reg_form as reg_form
+
+
+def main():
+    user_phone = reg_form.get_phone_number()
+    user_email = reg_form.get_email()
+    user_password = reg_form.get_password()
+
+    with open('user.txt', 'a') as f:
+        f.write(f'User Phone: {user_phone}\nUser Email: {user_email}\npassword: {user_password}')
+
+
+if __name__ == '__main__':
+    main()
