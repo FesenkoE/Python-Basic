@@ -130,9 +130,9 @@ def check_password(pwd):
     return
 
 
-def write_error_data(field_type, data):
+def write_error_data(error_type, data):
     with open('errors.txt', 'a') as f:
-        f.write(f'{field_type} - {data}\n')
+        f.write(f'{error_type} - {data}\n')
 
 
 if __name__ == '__main__':
