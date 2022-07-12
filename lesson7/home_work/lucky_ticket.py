@@ -18,10 +18,7 @@ def is_lucky(ticket_num):
     for digit in ticket_num[int(len(ticket_num) / 2):]:
         sum_2 += int(digit)
 
-    if sum_1 == sum_2:
-        return True
-    else:
-        return False
+    return sum_1 == sum_2
 
 
 assert is_lucky(1230) is True
