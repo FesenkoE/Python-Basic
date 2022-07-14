@@ -41,7 +41,7 @@ def revers_i_e():
         f.write(text)
 
 
-def creat_finish_txt():
+def create_finish_txt():
     """
     4.
     Если в файле file_practice.txt четное количество элементов
@@ -76,5 +76,5 @@ def insert_txt():
 create_file()
 read_file()
 revers_i_e()
-creat_finish_txt()
+create_finish_txt()
 insert_txt()

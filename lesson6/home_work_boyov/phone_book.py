@@ -21,10 +21,9 @@ def phone_format(phone_num):
 #        if not char.isdigit():
 #            phone_num = phone_num.replace(char, '')  # удаляем лишние символы
     if len(phone_num) >= 9:
-        return '+380' + phone_num[-9::]
+        return '+380' + phone_num[-9:]
     else:
         return phone_num
-
 
 
 def main():

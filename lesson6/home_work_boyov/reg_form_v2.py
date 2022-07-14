@@ -9,8 +9,7 @@
 # Решение в lesson8/register/main.py
 
 from pathlib import Path
-import lesson5.home_work_boyov.reg_form as reg_form
-
+import reg_form
 FILES_DIR = Path(__file__).resolve().parent / 'files'
 
 
@@ -20,6 +19,7 @@ def set_phone():
     if (res := reg_form.phone_format(phone))[0]:
         return res[1]
     else:
+        print(res)
         save_error(res[1])
         return set_phone()
 
@@ -68,7 +68,7 @@ def set_password():
                      "Должны быть минимум по одному символу в верхнем и нижнем регистре.\n"
                      "Должны быть минимум одна цифра.\n"
                      "Введите пароль: ")
-    if (res:= reg_form.check_password(password))[0]:
+    if (res := reg_form.check_password(password))[0]:
         return password
     else:
         save_error(password + res[1])

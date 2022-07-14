@@ -16,7 +16,7 @@
 
 """
 
-import lesson5.home_work_boyov.password_gen as p_g
+import password_gen as p_g
 
 
 def create_file():
@@ -28,10 +28,9 @@ def create_file():
             pass
 
 
-def write_password_in_file(generator_password):
+def write_password_in_file(password):  # пароль не генериркется новый... куда я смотрел!? шо за тупоссть. переделать
     count = 0
     while count <= 10:
-        password = generator_password
         with open('password_gen_v2.txt', 'r') as f:
             list_password = f.readlines()
         if password + '\n' not in list_password:
@@ -57,7 +56,6 @@ def main():
             return write_password_in_file(p_g.generate_password_user())
         case _:
             print('Не существующий вариант')
-
 
 
 if __name__ == "__main__":

@@ -1,0 +1,20 @@
+[
+    {
+        "name": null,
+        "games": null,
+        "record": null,
+        "avg_attempts": null
+    },
+    {
+        "name": "Evgeniy",
+        "games": 6,
+        "record": 8,
+        "avg_attempts": 9.166666666666666
+    },
+    {
+        "name": "Evgen",
+        "games": 2,
+        "record": 7,
+        "avg_attempts": 7.5
+    }
+]
