@@ -16,7 +16,11 @@
 
 """
 
+<<<<<<< HEAD
 import password_gen as p_g
+=======
+import utilities.password_gen as p_g
+>>>>>>> 936a39df4eddcff2aa490ba770d90a36573f56da
 
 
 def create_file():
@@ -59,4 +63,4 @@ def main():
 
 
 if __name__ == "__main__":
-    print(main())
+    main()
