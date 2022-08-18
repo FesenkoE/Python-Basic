@@ -1,0 +1,79 @@
+{
+    "Evgeniy": {
+        "data_magic": {
+            "games": 20,
+            "record": 5,
+            "avg_attempts": 8.6
+        },
+        "data_blackjack": {
+            "games": 45,
+            "profit": 410.0
+        }
+    },
+    "Boyov": {
+        "data_magic": {
+            "games": 4,
+            "record": 7,
+            "avg_attempts": 10.25
+        },
+        "data_blackjack": {
+            "games": 16,
+            "profit": -10
+        }
+    },
+    "\u041c\u0438\u043b\u0435\u043d\u0430": {
+        "data_magic": {
+            "games": 2,
+            "record": 9,
+            "avg_attempts": 9.0
+        },
+        "data_blackjack": {
+            "games": 0,
+            "profit": 0
+        }
+    },
+    "qwe": {
+        "data_magic": {
+            "games": 0,
+            "record": 999,
+            "avg_attempts": 999
+        },
+        "data_blackjack": {
+            "games": 1,
+            "profit": -10
+        }
+    },
+    "asd": {
+        "data_magic": {
+            "games": 2,
+            "record": 9,
+            "avg_attempts": 10.0
+        },
+        "data_blackjack": {
+            "games": 1,
+            "profit": -10
+        }
+    },
+    "": {
+        "data_magic": {
+            "games": 0,
+            "record": 999,
+            "avg_attempts": 999
+        },
+        "data_blackjack": {
+            "games": 0,
+            "profit": 0
+        }
+    },
+    "Milena": {
+        "data_magic": {
+            "games": 1,
+            "record": 10,
+            "avg_attempts": 10
+        },
+        "data_blackjack": {
+            "games": 25,
+            "profit": 90
+        }
+    }
+}
