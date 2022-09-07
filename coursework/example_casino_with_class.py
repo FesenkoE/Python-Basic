@@ -74,7 +74,6 @@ class Casino:
                       'В этой игре победил ', winner)
                 y_n = input('\n___________\nЕщё играем (Y/n)?')
                 if y_n == 'n' or y_n == 'N':
-                    self.main_menu()
                     break
         else:
             while True:

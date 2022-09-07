@@ -1,20 +1,20 @@
 {
     "Evgeniy": {
         "data_magic": {
-            "games": 20,
+            "games": 24,
             "record": 5,
-            "avg_attempts": 8.6
+            "avg_attempts": 8.626
         },
         "data_blackjack": {
-            "games": 45,
-            "profit": 410.0
+            "games": 115,
+            "profit": 600.0
         }
     },
     "Boyov": {
         "data_magic": {
-            "games": 4,
+            "games": 5,
             "record": 7,
-            "avg_attempts": 10.25
+            "avg_attempts": 9.6
         },
         "data_blackjack": {
             "games": 16,
@@ -74,6 +74,28 @@
         "data_blackjack": {
             "games": 25,
             "profit": 90
+        }
+    },
+    "Fis": {
+        "data_magic": {
+            "games": 1,
+            "record": 11,
+            "avg_attempts": 11
+        },
+        "data_blackjack": {
+            "games": 3,
+            "profit": -200
+        }
+    },
+    "Sania": {
+        "data_magic": {
+            "games": 1,
+            "record": 6,
+            "avg_attempts": 6
+        },
+        "data_blackjack": {
+            "games": 1,
+            "profit": -35
         }
     }
 }

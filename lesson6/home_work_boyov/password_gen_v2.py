@@ -16,11 +16,8 @@
 
 """
 
-<<<<<<< HEAD
-import password_gen as p_g
-=======
+
 import utilities.password_gen as p_g
->>>>>>> 936a39df4eddcff2aa490ba770d90a36573f56da
 
 
 def create_file():
@@ -32,9 +29,10 @@ def create_file():
             pass
 
 
-def write_password_in_file(password):  # пароль не генериркется новый... куда я смотрел!? шо за тупоссть. переделать
+def write_password_in_file(pwd):  # пароль не генериркется новый... куда я смотрел!? шо за тупоссть. переделать
     count = 0
     while count <= 10:
+        password = pwd()
         with open('password_gen_v2.txt', 'r') as f:
             list_password = f.readlines()
         if password + '\n' not in list_password:
@@ -51,13 +49,13 @@ def main():
 
     match p_g.choice_typ_password():
         case '1':
-            return write_password_in_file(p_g.generate_password_low())
+            return write_password_in_file(p_g.generate_password_low)
         case '2':
-            return write_password_in_file(p_g.generate_password_letter_and_dig())
+            return write_password_in_file(p_g.generate_password_letter_and_dig)
         case '3':
-            return write_password_in_file(p_g.generate_password_strong())
+            return write_password_in_file(p_g.generate_password_strong)
         case '4':
-            return write_password_in_file(p_g.generate_password_user())
+            return write_password_in_file(p_g.generate_password_user)
         case _:
             print('Не существующий вариант')
 

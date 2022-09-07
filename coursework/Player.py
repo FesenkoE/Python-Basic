@@ -44,11 +44,13 @@ class Player:
     def count_point_decorator(func):
         def wrapper(self, card):
             self.point += card.point
+            result = func(self, card)
             if self.point > 21:
                 for c in self.cards:
                     if c.meaning == 'Ace':
+                        c.meaning = "#Ace"
                         self.point -= 10
-            result = func(self, card)
+                        break
             return result
         return wrapper
 
