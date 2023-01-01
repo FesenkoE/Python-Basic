@@ -3,6 +3,7 @@
     примеры в формате:
         инструкция    # результат
         print(4)      # 4
+        https://t.me/iamLiliia77
 """
 
 print("Hello world!")

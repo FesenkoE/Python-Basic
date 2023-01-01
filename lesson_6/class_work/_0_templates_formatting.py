@@ -4,7 +4,7 @@
 """
 
 HELLO_TEMPLATE = 'Hello, {name}!'
-INFO_TEMPALTE = '{name} from {city}. He is {age}.'
+INFO_TEMPLATE = '{name} from {city}. He is {age}.'
 BYE_TEMPLATE = 'Goodbye, {name}!'
 
 SUCCESS_REG_MESSAGE = """
@@ -23,7 +23,7 @@ Best regards, ABC!
 # Как использовать
 
 print(HELLO_TEMPLATE.format(name='John'))
-print(INFO_TEMPALTE.format(name='John', city='Kiev', age=21))
+print(INFO_TEMPLATE.format(name='John', city='Kiev', age=21))
 print(BYE_TEMPLATE.format(name='John'))
 
 print(HELLO_TEMPLATE.format(name='Elizabeth'))
